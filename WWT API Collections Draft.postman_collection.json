@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "53bfa91d-1e96-4444-9fc6-fdea26c8ee1a",
+		"_postman_id": "ad5172ad-5b89-4b6d-be60-cf51c24f1a4a",
 		"name": "WWT API Collections Draft",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "48180077",
-		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-53bfa91d-1e96-4444-9fc6-fdea26c8ee1a?action=share&source=collection_link&creator=48180077"
+		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-ad5172ad-5b89-4b6d-be60-cf51c24f1a4a?action=share&source=collection_link&creator=48180077"
 	},
 	"item": [
 		{
@@ -4353,7 +4353,7 @@
 			]
 		},
 		{
-			"name": "Voucher",
+			"name": "Voucher +",
 			"item": [
 				{
 					"name": "Generate voucher",
