@@ -1,0 +1,5083 @@
+{
+	"info": {
+		"_postman_id": "53bfa91d-1e96-4444-9fc6-fdea26c8ee1a",
+		"name": "WWT API Collections Draft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48180077",
+		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-53bfa91d-1e96-4444-9fc6-fdea26c8ee1a?action=share&source=collection_link&creator=48180077"
+	},
+	"item": [
+		{
+			"name": "Auth +",
+			"item": [
+				{
+					"name": "SuccessfulSign_Up",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_generated_email}}\",\r\n    \"password\": \"{{test_generated_password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Test_user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"pm.environment.set(\"test_token\", json.token);\r",
+									"pm.environment.set(\"test_email\", json.email);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test.{{$randomUserName}}@wwt-qa.com\",\r\n    \"password\": \"{{UserPass}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Empty",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Empty_Email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Empty_Pass",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Exist_Email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\", format: \"date-time\" },\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test7@mai.ua\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Pass_5_symbols",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Pass_501_symbols",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"kF7jD8gL2aP9xQ4bV0zR1mC6sH3tW5nY8eU7oK2pJ4lA9vB6qS0rM1dN3fG5hT8iE2wZ7uO4yX0cL6jV3bQ9aP1mK5nR8sH2tW4eY6oU0pJ7lA3vB5qS8rM2dN0fG4hT1iE6wZ3uO9yX5cL2jV0bQ8aP3mK7nR1sH4tW9eY5oU2pJ0lA6vB1qS7rM3dN5fG8hT0iE4wZ1uO6yX9cL3jV5bQ0aP6mK2nR9sH1tW3eY0oU5pJ8lA2vB4qS9rM6dN8fG1hT3iE0wZ5uO2yX7cL9jV1bQ4aP0mK8nR3sH6tW1eY4oU9pJ5lA0vB3qS2rM9dN7fG2hT6iE9wZ0uO3yX1cL5jV7bQ2aP4mK0nR5sH9tW6eY1oU3pJ2lA8vB0qS5rM4dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2ckp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Pass_499_symbols",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"kF7jD8gL2aP9xQ4bV0zR1mC6sH3tW5nY8eU7oK2pJ4lA9vB6qS0rM1dN3fG5hT8iE2wZ7uO4yX0cL6jV3bQ9aP1mK5nR8sH2tW4eY6oU0pJ7lA3vB5qS8rM2dN0fG4hT1iE6wZ3uO9yX5cL2jV0bQ8aP3mK7nR1sH4tW9eY5oU2pJ0lA6vB1qS7rM3dN5fG8hT0iE4wZ1uO6yX9cL3jV5bQ0aP6mK2nR9sH1tW3eY0oU5pJ8lA2vB4qS9rM6dN8fG1hT3iE0wZ5uO2yX7cL9jV1bQ4aP0mK8nR3sH6tW1eY4oU9pJ5lA0vB3qS2rM9dN7fG2hT6iE9wZ0uO3yX1cL5jV7bQ2aP4mK0nR5sH9tW6eY1oU3pJ2lA8vB0qS5rM4dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Pass_500_symbols",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"kF7jD8gL2aP9xQ4bV0zR1mC6sH3tW5nY8eU7oK2pJ4lA9vB6qS0rM1dN3fG5hT8iE2wZ7uO4yX0cL6jV3bQ9aP1mK5nR8sH2tW4eY6oU0pJ7lA3vB5qS8rM2dN0fG4hT1iE6wZ3uO9yX5cL2jV0bQ8aP3mK7nR1sH4tW9eY5oU2pJ0lA6vB1qS7rM3dN5fG8hT0iE4wZ1uO6yX9cL3jV5bQ0aP6mK2nR9sH1tW3eY0oU5pJ8lA2vB4qS9rM6dN8fG1hT3iE0wZ5uO2yX7cL9jV1bQ4aP0mK8nR3sH6tW1eY4oU9pJ5lA0vB3qS2rM9dN7fG2hT6iE9wZ0uO3yX1cL5jV7bQ2aP4mK0nR5sH9tW6eY1oU3pJ2lA8vB0qS5rM4dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2cL8jV4bQ64dN1fG9hT7iE3wZ6uO0yX2ck\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Invalid_Email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"a@b.\",\r\n    \"password\": \"123987\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Spec_Char",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"john.doe+{{$randomUserName}}@example-domain.com\",\r\n    \"password\": \"#$%^:>-/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Cyrillic_Char",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"тест_юзер{{$randomFirstName}}@example-domain.com\",\r\n    \"password\": \"пароль\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SuccessfulSign_In",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"if (response.token) {\r",
+									"    pm.environment.set(\"authToken\", response.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{UserName}}\",\r\n  \"password\": \"{{UserPass}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_In_Test_user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"if (response.token) {\r",
+									"    pm.environment.set(\"authToken\", response.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{test_email}}\",\r\n  \"password\": \"{{UserPass}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_In_Empty",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_In_Invalid_Pass",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test7@mai.ua\",\r\n  \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_In_Non_existent_Email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbmdpbmVlcnNxYTE1N0BnbWFpbC5jb20iLCJ2ZXIiOjEsImV4cCI6MTc1ODAyMzk2NCwiaWF0IjoxNzU3Njc4MzY0LCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9UT1VSSVNUIn1dfQ.2ZZMHk_mCoJapNXyDcn4TXVmVzplg9_ejsV1okpFVF8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzMwMjQsImlhdCI6MTc1NjgyNzQyNCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.jkwgWFSn5VR1zi4R_IpMyt182G0wflmCEJV-R3b7cAw",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzUxNDAsImlhdCI6MTc1NjgyOTU0MCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.FaFjez3gD2_LTMlzFGt0a2rrizEUyljZCdDn3owfqak",
+									"disabled": true
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzMwMjQsImlhdCI6MTc1NjgyNzQyNCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.jkwgWFSn5VR1zi4R_IpMyt182G0wflmCEJV-R3b7cAw",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Invalid_Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbmdpbmVlcnNxYTE1N0BnbWFpbC5jb20iLCJ2ZXIiOjEsImV4cCI6MTc1ODAyMzk2NCwiaWF0IjoxNzU3Njc4MzY0LCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9UT1VSSVNUIn1dfQ.2ZZMHk_mCoJapNXyDcn4TXVmVzplg9_ejsV1okpFVF",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzMwMjQsImlhdCI6MTc1NjgyNzQyNCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.jkwgWFSn5VR1zi4R_IpMyt182G0wflmCEJV-R3b7cAw",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzUxNDAsImlhdCI6MTc1NjgyOTU0MCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.FaFjez3gD2_LTMlzFGt0a2rrizEUyljZCdDn3owfqa",
+									"disabled": true
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Mm1haWxAZ21haWwuY29tIiwidmVyIjoxLCJleHAiOjE3NTcxNzMwMjQsImlhdCI6MTc1NjgyNzQyNCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.jkwgWFSn5VR1zi4R_IpMyt182G0wflmCEJV-R3b7cAw",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Profile +",
+			"item": [
+				{
+					"name": "Sign_Up_Test_user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"pm.environment.set(\"test_token\", json.token);\r",
+									"pm.environment.set(\"test_email\", json.email);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test.{{$randomUserName}}@wwt-qa.com\",\r\n    \"password\": \"{{UserPass}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_In_Test_user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"if (response.token) {\r",
+									"    pm.environment.set(\"authToken\", response.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{test_email}}\",\r\n  \"password\": \"{{UserPass}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  required: [\"id\", \"firstName\", \"lastName\", \"email\"], // email обязателен\r",
+									"  properties: {\r",
+									"    id: { type: \"string\", pattern: \"^[0-9a-fA-F-]{36}$\" },\r",
+									"    firstName: { type: \"string\" },\r",
+									"    lastName: { type: \"string\" },\r",
+									"    email: { \r",
+									"      type: \"string\", \r",
+									"      format: \"email\",\r",
+									"      pattern: \"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$\"\r",
+									"    },\r",
+									"    phone: { type: \"string\" },\r",
+									"    dateOfBirth: { type: \"string\", pattern: \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\" },\r",
+									"    gender: { type: \"string\", enum: [\"MALE\", \"FEMALE\", \"OTHER\"] },\r",
+									"    country: { type: \"string\" },\r",
+									"    address: { type: \"string\" },\r",
+									"    language: { type: \"string\" },\r",
+									"    newsletter: { type: \"string\" }\r",
+									"  },\r",
+									"  additionalProperties: true\r",
+									"};\r",
+									"\r",
+									"// Проверяем схему\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"// Проверяем наличие обязательного поля email\r",
+									"pm.test(\"Response contains 'email' field\", function () {\r",
+									"  const jsonData = pm.response.json();\r",
+									"  pm.expect(jsonData).to.have.property(\"email\");\r",
+									"  pm.expect(jsonData.email).to.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile Unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"  pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  properties: {\r",
+									"    time: { type: \"string\"},\r",
+									"    statusCode: { type: \"string\" },\r",
+									"    errorMessage: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    },\r",
+									"    stackTrace: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches schema\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0N0BtYWkudWEiLCJ2ZXIiOjEsImV4cCI6MTc2MDAyMzE5MCwiaWF0IjoxNzU5Njc3NTkwLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9UT1VSSVNUIn1dfQ.pk4i1Gr4CHiwsb5uokc4UJ_sX6fwy5R4s1619LF3m0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  required: [\"email\"], // обязательное поле\r",
+									"  properties: {\r",
+									"    id: { type: \"string\" },\r",
+									"    firstName: { type: \"string\" },\r",
+									"    lastName: { type: \"string\" },\r",
+									"    email: { type: \"string\" },\r",
+									"    phone: { type: \"string\" },\r",
+									"    dateOfBirth: { type: \"string\" },\r",
+									"    gender: { type: \"string\" },\r",
+									"    country: { type: \"string\" },\r",
+									"    address: { type: \"string\" },\r",
+									"    language: { type: \"string\" },\r",
+									"    currency: { type: \"string\" }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema and includes 'email'\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"MALE\",\r\n  \"country\": \"UKR\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile Empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  required: [\"email\"], // обязательное поле\r",
+									"  properties: {\r",
+									"    id: { type: \"string\" },\r",
+									"    firstName: { type: \"string\" },\r",
+									"    lastName: { type: \"string\" },\r",
+									"    email: { type: \"string\" },\r",
+									"    phone: { type: \"string\" },\r",
+									"    dateOfBirth: { type: \"string\" },\r",
+									"    gender: { type: \"string\" },\r",
+									"    country: { type: \"string\" },\r",
+									"    address: { type: \"string\" },\r",
+									"    language: { type: \"string\" },\r",
+									"    currency: { type: \"string\" }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema and includes 'email'\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile New email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  required: [\"email\"], // обязательное поле\r",
+									"  properties: {\r",
+									"    id: { type: \"string\" },\r",
+									"    firstName: { type: \"string\" },\r",
+									"    lastName: { type: \"string\" },\r",
+									"    email: { type: \"string\" },\r",
+									"    phone: { type: \"string\" },\r",
+									"    dateOfBirth: { type: \"string\" },\r",
+									"    gender: { type: \"string\" },\r",
+									"    country: { type: \"string\" },\r",
+									"    address: { type: \"string\" },\r",
+									"    language: { type: \"string\" },\r",
+									"    currency: { type: \"string\" }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema and includes 'email'\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"test.Juvenal333@wwt-qa.com\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"MALE\",\r\n  \"country\": \"UKR\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile Invalid country and currency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"type\", \"title\", \"status\", \"detail\", \"instance\"],\r",
+									"    properties: {\r",
+									"        type: { type: \"string\" },\r",
+									"        title: { type: \"string\" },\r",
+									"        status: { type: \"number\" },\r",
+									"        detail: { type: \"string\" },\r",
+									"        instance: { type: \"string\" }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"MALE\", //Allowed values: MALE, FEMALE, NON_BINARY, ANOTHER, DONT_ANSWER\r\n  \"country\": \"UKRaine\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USDT\" //Three-letter currency codes\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile Unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  properties: {\r",
+									"    time: { type: \"string\"},\r",
+									"    statusCode: { type: \"string\" },\r",
+									"    errorMessage: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    },\r",
+									"    stackTrace: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches schema\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0N0BtYWkudWEiLCJ2ZXIiOjEsImV4cCI6MTc2MDAyMzE5MCwiaWF0IjoxNzU5Njc3NTkwLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9UT1VSSVNUIn1dfQ.pk4i1Gr4CHiwsb5uokc4UJ_sX6fwy5R4s1619LF3m0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user profile Unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  properties: {\r",
+									"    time: { type: \"string\"},\r",
+									"    statusCode: { type: \"string\" },\r",
+									"    errorMessage: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    },\r",
+									"    stackTrace: {\r",
+									"      type: \"array\",\r",
+									"      items: { type: \"string\" }\r",
+									"    }\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches schema\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Lkp1dmVuYWwzM0B3d3QtcWEuY29tIiwidmVyIjoxLCJleHAiOjE3NjAzNDIwMDIsImlhdCI6MTc1OTk5NjQwMiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVE9VUklTVCJ9XX0.f68BZLhRUGUr0BVrRDi6UXx4ew4fCtbCYTxygtmaP9Z",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file storage controller",
+			"item": []
+		},
+		{
+			"name": "Manage Guests",
+			"item": [
+				{
+					"name": "Change-password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"{{test_generated_password}}\",\r\n  \"newPassword\": \"Nastya112\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/clients/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{test_generated_email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/clients/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-password/confirm",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"{{signup_token}}\",\r\n  \"new_password\": \"NewSecurePassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/clients/reset-password/confirm",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"reset-password",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/clients/email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manage Like Sets",
+			"item": [
+				{
+					"name": "Create a new like set",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Like set was created\", function () {\r",
+									"    pm.expect(response).to.have.property(\"id\");\r",
+									"    pm.expect(response.title).to.eql(pm.environment.get(\"likeSetTitle\"));\r",
+									"});\r",
+									"pm.environment.set(\"SetId\", response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"{{likeSetTitle}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/sets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"sets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all like sets",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Like set\", function () {\r",
+									"    pm.expect(response.sets[0]).to.have.property(\"id\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"My Updated Favorites\",\r\n  \"isSelected\": true,\r\n  \"mode\": \"All\",\r\n  \"unselectedFeatures\": [\"feature_1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/sets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"sets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a like set",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									" pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Like set\", function () {\r",
+									"    pm.expect(response).to.have.property(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"My Updated Favorites\",\r\n  \"isSelected\": true,\r\n  \"mode\": \"ALL\",\r\n  \"unselectedFeatures\": [\"feature_1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/sets/{{SetId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"sets",
+								"{{SetId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete like set",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"My Updated Favorites\",\r\n  \"isSelected\": true,\r\n  \"mode\": \"All\",\r\n  \"unselectedFeatures\": [\"feature_1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/sets/{{SetId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"sets",
+								"{{SetId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manage Offers",
+			"item": [
+				{
+					"name": "saveOffer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"let requestBody = pm.request.body.raw;\r",
+									"let bodyJson = JSON.parse(requestBody);\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData).to.have.property('wwtOfferId');\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}\r",
+									"\r",
+									"if (bodyJson.metaData) {\r",
+									"    let hotelId = bodyJson.metaData.integrationHotelId;\r",
+									"    let roomId = bodyJson.metaData.integrationRoomId;\r",
+									"pm.environment.set(\"hotelId\", hotelId);\r",
+									"pm.environment.set(\"roomId\", roomId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"metaData\": {\r\n        \"nonPersistingOfferId\": \"3f263a32252c1a30213e3f2b381a2c37380b7b7f7c49465b564359592330302d583638725a194b6f00051f054f445c46155c6f46474c465d416d53194b235c455e590b071b1b05\",\r\n        \"integrationName\": \"HOTELBEDS_INTEGRATION\",\r\n        \"integrationHotelId\": \"128407\",\r\n        \"integrationRoomId\": \"DBL.ST-1\",\r\n        \"status\": \"AVAILABLE\",\r\n        \"statusUpdateTimestamp\": \"2025-09-20T11:26:56.892816498Z\"\r\n    },\r\n    \"offerDynamicData\": {\r\n        \"roomDynamicData\": {\r\n            \"nonPersistingOfferId\": \"3f263a32252c1a30213e3f2b381a2c37380b7b7f7c49465b564359592330302d583638725a194b6f00051f054f445c46155c6f46474c465d416d53194b235c455e590b071b1b05\",\r\n            \"name\": \"Standard Double Room\",\r\n            \"checkIn\": \"2025-09-22\",\r\n            \"checkOut\": \"2025-09-29\",\r\n            \"guestQuantity\": {\r\n                \"adultsQuantity\": 2\r\n            },\r\n            \"quantity\": 1,\r\n            \"bookablePackagedFeatures\": [\r\n                {\r\n                    \"name\": \"Cancellation\",\r\n                    \"iconName\": \"cancellation\",\r\n                    \"wwtPriority\": 120,\r\n                    \"group\": {\r\n                        \"name\": \"Rules, Policies, Payment\",\r\n                        \"iconName\": \"policy\",\r\n                        \"tabName\": \"Policies\",\r\n                        \"priority\": 100,\r\n                        \"description\": \"Refers to the financial and behavioral regulations of the property, including accepted payment methods, check-in/check-out procedures, age restrictions, special requirements, and policies on smoking, parties, and accessibility.\"\r\n                    },\r\n                    \"options\": [\r\n                        {\r\n                            \"name\": \"Not refundable\",\r\n                            \"description\": \"100% of the booking amount will be charged in case of cancellation.\",\r\n                            \"wwtPriority\": 1,\r\n                            \"packages\": [\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF RO|RO||1~2~0||N@07~~2002ce~-963891238~S~~~NRF~~3C114C7E717C444175577561638905AAPL0060000000000824d26b\",\r\n                                    \"price\": {\r\n                                        \"amount\": 718,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": true\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR RO|RO||1~2~0||N@07~~24d35c~425157893~S~~~NOR~~3C114C7E717C444175577561638905AAPL006000000000082602e6\",\r\n                                    \"price\": {\r\n                                        \"amount\": 860.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF BB|BB||1~2~0||N@07~~2003a0~-1293975153~S~~~NRF~~3C114C7E717C444175577561638905AAPL00600000000008201321\",\r\n                                    \"price\": {\r\n                                        \"amount\": 928,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR BB|BB||1~2~0||N@07~~24d42e~-97767540~S~~~NOR~~3C114C7E717C444175577561638905AAPL0060000000000821839c\",\r\n                                    \"price\": {\r\n                                        \"amount\": 1070.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                }\r\n                            ],\r\n                            \"isExist\": true,\r\n                            \"isSelected\": true,\r\n                            \"isWarning\": false,\r\n                            \"isFromReview\": false,\r\n                            \"isCustom\": false\r\n                        }\r\n                    ],\r\n                    \"type\": \"bookablePackaged\"\r\n                },\r\n                {\r\n                    \"name\": \"Meals\",\r\n                    \"iconName\": \"meals\",\r\n                    \"wwtPriority\": 110,\r\n                    \"group\": {\r\n                        \"name\": \"Meals\",\r\n                        \"iconName\": \"meals\",\r\n                        \"priority\": 90,\r\n                        \"description\": \"Refers to the dining options and services available, such as breakfast, brunch, special dietary menus, snacks, and various meal settings like rooftop bars and cafés.\"\r\n                    },\r\n                    \"options\": [\r\n                        {\r\n                            \"wwtOptionId\": \"10909\",\r\n                            \"name\": \"No meals\",\r\n                            \"wwtPriority\": 1,\r\n                            \"packages\": [\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF RO|RO||1~2~0||N@07~~2002ce~-963891238~S~~~NRF~~3C114C7E717C444175577561638905AAPL0060000000000824d26b\",\r\n                                    \"price\": {\r\n                                        \"amount\": 718,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": true\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR RO|RO||1~2~0||N@07~~24d35c~425157893~S~~~NOR~~3C114C7E717C444175577561638905AAPL006000000000082602e6\",\r\n                                    \"price\": {\r\n                                        \"amount\": 860.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                }\r\n                            ],\r\n                            \"isExist\": true,\r\n                            \"isSelected\": true,\r\n                            \"isWarning\": false,\r\n                            \"isFromReview\": false,\r\n                            \"isCustom\": false\r\n                        },\r\n                        {\r\n                            \"wwtOptionId\": \"10908\",\r\n                            \"name\": \"Breakfast\",\r\n                            \"wwtPriority\": 50,\r\n                            \"packages\": [\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF BB|BB||1~2~0||N@07~~2003a0~-1293975153~S~~~NRF~~3C114C7E717C444175577561638905AAPL00600000000008201321\",\r\n                                    \"price\": {\r\n                                        \"amount\": 928,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR BB|BB||1~2~0||N@07~~24d42e~-97767540~S~~~NOR~~3C114C7E717C444175577561638905AAPL0060000000000821839c\",\r\n                                    \"price\": {\r\n                                        \"amount\": 1070.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                }\r\n                            ],\r\n                            \"isExist\": true,\r\n                            \"isSelected\": false,\r\n                            \"isWarning\": false,\r\n                            \"isFromReview\": false,\r\n                            \"isCustom\": false\r\n                        }\r\n                    ],\r\n                    \"type\": \"bookablePackaged\"\r\n                },\r\n                {\r\n                    \"name\": \"Rate Comments\",\r\n                    \"group\": {\r\n                        \"name\": \"Facilities\",\r\n                        \"iconName\": \"facilities\",\r\n                        \"priority\": 60,\r\n                        \"description\": \"Refers to the amenities and services available to enhance comfort and convenience.\"\r\n                    },\r\n                    \"options\": [\r\n                        {\r\n                            \"name\": \"Babybed on request for €10 per... (See full info - 🛈. Price: 718.00EUR)\",\r\n                            \"description\": \"This comment is valid from 2019-11-26 to 2027-12-31. \\nBabybed on request for €10 per stay\\n \\n\",\r\n                            \"wwtPriority\": 1,\r\n                            \"packages\": [\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF RO|RO||1~2~0||N@07~~2002ce~-963891238~S~~~NRF~~3C114C7E717C444175577561638905AAPL0060000000000824d26b\",\r\n                                    \"price\": {\r\n                                        \"amount\": 718,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": true\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR NRF BB|BB||1~2~0||N@07~~2003a0~-1293975153~S~~~NRF~~3C114C7E717C444175577561638905AAPL00600000000008201321\",\r\n                                    \"price\": {\r\n                                        \"amount\": 928,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                },\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR BB|BB||1~2~0||N@07~~24d42e~-97767540~S~~~NOR~~3C114C7E717C444175577561638905AAPL0060000000000821839c\",\r\n                                    \"price\": {\r\n                                        \"amount\": 1070.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                }\r\n                            ],\r\n                            \"isExist\": true,\r\n                            \"isSelected\": true,\r\n                            \"isWarning\": false,\r\n                            \"isFromReview\": false,\r\n                            \"isCustom\": false\r\n                        },\r\n                        {\r\n                            \"name\": \"Baby bed on request for 10 euro in the... (See full info - 🛈. Price: 860.77EUR)\",\r\n                            \"description\": \"This comment is valid from 2019-11-26 to 2027-12-31. \\nBaby bed on request for 10 euro in the hotel. \\n\",\r\n                            \"packages\": [\r\n                                {\r\n                                    \"bookingKey\": \"20250821|20250828|W|221|128407|DBL.ST-1|CG-BAR RO|RO||1~2~0||N@07~~24d35c~425157893~S~~~NOR~~3C114C7E717C444175577561638905AAPL006000000000082602e6\",\r\n                                    \"price\": {\r\n                                        \"amount\": 860.77,\r\n                                        \"currency\": \"EUR\"\r\n                                    },\r\n                                    \"roomsAvailable\": 13,\r\n                                    \"isSelected\": false\r\n                                }\r\n                            ],\r\n                            \"isExist\": true,\r\n                            \"isSelected\": false,\r\n                            \"isWarning\": false,\r\n                            \"isFromReview\": false,\r\n                            \"isCustom\": false\r\n                        }\r\n                    ],\r\n                    \"type\": \"bookablePackaged\"\r\n                }\r\n            ]\r\n        },\r\n        \"hotelDynamicData\": {\r\n            \"nonPersistingOfferId\": \"3f263a32252c1a30213e3f2b381a2c37380b7b7f7c49465b564359592330302d583638725a194b6f00051f054f445c46155c6f46474c465d416d53194b235c455e590b071b1b05\",\r\n            \"destinationName\": \"Amsterdam and vicinity\",\r\n            \"averageRate\": 5,\r\n            \"reviewCount\": 772,\r\n            \"checkInFeatures\": [\r\n                {\r\n                    \"name\": \"Bikes\",\r\n                    \"description\": \"You need to check price of this feature on reception when you will checking-in\",\r\n                    \"iconName\": \"bikes\",\r\n                    \"wwtPriority\": 65,\r\n                    \"group\": {\r\n                        \"name\": \"Spa, Sports and Entertainment\",\r\n                        \"iconName\": \"entertainment\",\r\n                        \"priority\": 40,\r\n                        \"description\": \"Refers to recreational and wellness facilities and activities, including spas, sports equipment, entertainment venues, and various leisure options like water sports, fitness activities, and kids' clubs.\"\r\n                    },\r\n                    \"options\": [\r\n                        {\r\n                            \"wwtOptionId\": \"2608\",\r\n                            \"name\": \"Hire service\",\r\n                            \"wwtPriority\": 60,\r\n                            \"iconName\": \"bike\",\r\n                            \"price\": {\r\n                                \"amount\": 0\r\n                            },\r\n                            \"isExist\": true,\r\n                            \"isSelected\": true,\r\n                            \"isFromReview\": false,\r\n                            \"isWarning\": false,\r\n                            \"isCustom\": false\r\n                        }\r\n                    ],\r\n                    \"type\": \"checkIn\"\r\n                },\r\n                {\r\n                    \"name\": \"Check-out\",\r\n                    \"description\": \"You need to check price of this feature on reception when you will checking-in\",\r\n                    \"iconName\": \"check-out\",\r\n                    \"wwtPriority\": 78,\r\n                    \"group\": {\r\n                        \"name\": \"Rules, Policies, Payment\",\r\n                        \"iconName\": \"policy\",\r\n                        \"tabName\": \"Policies\",\r\n                        \"priority\": 100,\r\n                        \"description\": \"Refers to the financial and behavioral regulations of the property, including accepted payment methods, check-in/check-out procedures, age restrictions, special requirements, and policies on smoking, parties, and accessibility.\"\r\n                    },\r\n                    \"options\": [\r\n                        {\r\n                            \"wwtOptionId\": \"4405\",\r\n                            \"name\": \"Late Check-out\",\r\n                            \"wwtPriority\": 80,\r\n                            \"price\": {\r\n                                \"amount\": 0\r\n                            },\r\n                            \"isExist\": true,\r\n                            \"isSelected\": true,\r\n                            \"isFromReview\": false,\r\n                            \"isWarning\": false,\r\n                            \"isCustom\": false\r\n                        }\r\n                    ],\r\n                    \"type\": \"checkIn\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers"
+							],
+							"query": [
+								{
+									"key": "offerId",
+									"value": "{{likedOfferId}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get offer with applied promocode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData).to.have.property('wwtOfferId');\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offerId\": \"string\",\r\n  \"promoCode\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/promo-code",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"promo-code"
+							],
+							"query": [
+								{
+									"key": "offerId",
+									"value": "{{likedOfferId}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate offer by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData.metaData).to.have.property('wwtOfferId');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{wwtOfferId}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/validate/{{wwtOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"validate",
+								"{{wwtOfferId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get offer status by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"Offer status is present\", function () {\r",
+									"    let responseData = pm.response.text();\r",
+									"    pm.expect(responseData).to.include(\"AVAILABLE\");\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{wwtOfferId}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/status/{{wwtOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"status",
+								"{{wwtOfferId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get offer by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"metaData is present\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"metaData\");\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{wwtOfferId}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/{{wwtOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"{{wwtOfferId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"metaData is present\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"metaData\");\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/reservations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update offer structure",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/{offerId}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"{offerId}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manage Reactions",
+			"item": [
+				{
+					"name": "Set like for an offer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Like set was created\", function () {\r",
+									"    pm.expect(response).to.have.property(\"id\");\r",
+									"   // pm.expect(response.title).to.eql(pm.environment.get(\"likeSetTitle\"));\r",
+									"});\r",
+									"pm.environment.set(\"likedOfferId\", response.offerId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"wwOfferId\": \"{{wwtOfferId}}\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes?wwtOfferId={{wwtOfferId}}&setId={{SetId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes"
+							],
+							"query": [
+								{
+									"key": "wwtOfferId",
+									"value": "{{wwtOfferId}}"
+								},
+								{
+									"key": "setId",
+									"value": "{{SetId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all liked offers by setId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Offers is not empty\", function () {\r",
+									"    pm.expect(response.content.offers).to.be.an('array').that.is.not.empty;\r",
+									"    pm.environment.set(\"wwtOfferId\", response.content.offers[0].wwtOfferId);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes?setId={{SetId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes"
+							],
+							"query": [
+								{
+									"key": "setId",
+									"value": "{{SetId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unset like for an offer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Like was successfully deleted\", function () {\r",
+									"    pm.expect(response.message).to.eql(\"Like was successfully unset\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes?offerId={{likedOfferId}}&setId={{SetId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes"
+							],
+							"query": [
+								{
+									"key": "offerId",
+									"value": "{{likedOfferId}}"
+								},
+								{
+									"key": "setId",
+									"value": "{{SetId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set dislike for the given offer and provide a reason",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"reason\": [\"Good location\", \"Low price\"],\r\n  \"detailedDescription\": \"Great value for a weekend trip\",\r\n  \"offerId\": \"{{wwtOfferId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/dislikes/reason",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"dislikes",
+								"reason"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all disliked rooms for the guest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/dislikes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"dislikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set dislike for the given offer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Dislike is false\", function () {\r",
+									"    pm.expect(response.disliked).to.eql(false);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"dislikedId\", response.dislikeId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"integrationName\": \"HOTELBEDS_INTEGRATION\",\r\n  \"integrationHotelId\": \"{{hotelId}}\",\r\n  \"integrationRoomId\": \"{{roomId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/dislikes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"dislikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unset dislike for the given room",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const timeNow = Date.now();\r",
+									"const title = `My Set ${timeNow}`;\r",
+									"pm.environment.set(\"likeSetTitle\", title);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"integrationName\": \"HOTELBEDS_INTEGRATION\",\r\n  \"integrationHotelId\": \"{{hotelId}}\",\r\n  \"integrationRoomId\": \"{{roomId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/dislikes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"dislikes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set like for the given offer and provide a reason",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes/reason",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes",
+								"reason"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all liked offers of nonPersistOfferId by client",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes/ids",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes",
+								"ids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/likes/count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"likes",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop changelog for the given offerId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/changelog/{offerId}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"changelog",
+								"{offerId}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation room",
+			"item": [
+				{
+					"name": "CreateReservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData).to.have.property('wwtOfferId');\r",
+									"});\r",
+									"pm.environment.set(\"reservationId\", responseData.reservationId);\r",
+									"\r",
+									"pm.environment.set(\"reservedofferId\", responseData.offerId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offerId\": \"{{wwtOfferId}}\",\r\n  \"name\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"dateOfBirth\": \"1990-01-01\",\r\n  \"countryCode\": \"US\",\r\n  \"gender\": \"MALE\",\r\n  \"phone\": \"+1234567890\",\r\n  \"comment\": \"Please arrange for an early check-in.\",\r\n  \"address\": \"123 Main St, Anytown, USA\",\r\n  \"adultsList\": [\r\n    {\r\n      \"name\": \"Jane\",\r\n      \"lastName\": \"Doe\",\r\n      \"dateOfBirth\": \"1990-05-15\",\r\n      \"adult\": true\r\n    }\r\n  ],\r\n  \"childrenList\": [\r\n    {\r\n      \"name\": \"Jane\",\r\n      \"lastName\": \"Doe\",\r\n      \"dateOfBirth\": \"2018-05-15\",\r\n      \"adult\": true\r\n    }\r\n  ],\r\n  \"petList\": [\r\n    {\r\n      \"type\": \"DOG\",\r\n      \"weight\": \"5 kg\"\r\n    }\r\n  ],\r\n  \"redirectUrlAfterPayment\": \"string\",\r\n  \"isBusinessTrip\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData).to.have.property('wwtOfferId');\r",
+									"});\r",
+									"pm.environment.set(\"reservationId\", responseData.reservationId);\r",
+									"\r",
+									"pm.environment.set(\"reservedofferId\", responseData.offerId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"reservationId\": \"{{reservationId}}\",\r\n  \"language\": \"ENG\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All reserved offers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"metaData is present\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property(\"metaData\");\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation?integrationName=HOTELBEDS_INTEGRATION&page=0&pageSize=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3d3RiYWNrZW5kQGdtYWlsLmNvbSIsInZlciI6MSwiZXhwIjoxNzU5NjA1MDE1LCJpYXQiOjE3NTkyNTk0MTUsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.mL8SeHj7cqJ8DlqSbdYGSh-TRFVlWrf7n73sILfM2Rk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"reservationId\": \"string\",\r\n  \"clientReference\": \"string\",\r\n  \"remark\": \"string\",\r\n  \"holderName\": \"string\",\r\n  \"holderSurname\": \"string\",\r\n  \"checkIn\": \"2025-09-30\",\r\n  \"checkOut\": \"2025-09-30\",\r\n  \"boardCode\": \"string\",\r\n  \"passengerNames\": [\r\n    \"string\"\r\n  ],\r\n  \"passengerSurnames\": [\r\n    \"string\"\r\n  ],\r\n  \"addRoomIds\": [\r\n    0\r\n  ],\r\n  \"removeRoomIds\": [\r\n    0\r\n  ],\r\n  \"language\": \"string\",\r\n  \"update\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reservation by Booked Offer ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"OfferId exists\", function () {\r",
+									"  pm.expect(responseData.metaData).to.have.property('wwtOfferId');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation/{{reservedofferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"{{reservedofferId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reservation Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let responseData = pm.response.json();\r",
+									"pm.test(\"Offer status is present\", function () {\r",
+									"    let responseData = pm.response.text();\r",
+									"    pm.expect(responseData).to.include(\"AVAILABLE\");\r",
+									"});\r",
+									"if (responseData.wwtOfferId) {\r",
+									"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{reservationId}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation/status/{{reservationId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"status",
+								"{{reservationId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voucher",
+			"item": [
+				{
+					"name": "Generate voucher",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reservation/voucher/{{reservationId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reservation",
+								"voucher",
+								"{{reservationId}}"
+							],
+							"query": [
+								{
+									"key": "reservation_id",
+									"value": "{{reservationId}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Geocoding-controller",
+			"item": [
+				{
+					"name": "Search by coordinates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/geocoding/reverse?lat=50.4501&lng=30.5234",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"geocoding",
+								"reverse"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "50.4501",
+									"description": "Latitude in degrees"
+								},
+								{
+									"key": "lng",
+									"value": "30.5234",
+									"description": "Longtitude in degrees"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/geocoding/autocomplete?q=Париж",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"geocoding",
+								"autocomplete"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Париж"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistics",
+			"item": [
+				{
+					"name": "Get offers count by search parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/statistics/offers/count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"statistics",
+								"offers",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save offers count by serch parameters",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/statistics/offers/count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"statistics",
+								"offers",
+								"count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HubSpot Integration",
+			"item": [
+				{
+					"name": "Update existing contact in HubSpot",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/hubspot/update-contact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"hubspot",
+								"update-contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register contact in HubSpot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/hubspot/register-contact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"hubspot",
+								"register-contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test HubSpot connection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/hubspot/test-conection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"hubspot",
+								"test-conection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search contact by email in HubSpot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/hubspot/search-contact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"hubspot",
+								"search-contact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search Offers",
+			"item": [
+				{
+					"name": "Search offers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"guestQuantity.adultsQuantity\": \"2\",\r\n  \"flagSearch.isSearchWithDynamicAndStaticData\": \"true\",\r\n  \"flagSearch.isSearchOnlyStaticData\": \"false\",\r\n  \"flagSearch.isSearchOnlyDynamicData\": \"false\",\r\n  \"pagination.limit\": \"12\",\r\n  \"pagination.offset\": \"0\",\r\n  \"geolocation.radius\": \"10\",\r\n  \"geolocation.centerPoint.latitude\": \"52.377956\",\r\n  \"geolocation.centerPoint.longitude\": \"4.89707\",\r\n  \"integrationsSearch[0].integrationName\": \"HOTELBEDS_INTEGRATION\",\r\n  \"filters[0].id\": \"1\",\r\n  \"filters[0].type\": \"PRICE_RANGE\",\r\n  \"filters[0].rangeLower\": \"0\",\r\n  \"filters[0].rangeUpper\": \"1500\",\r\n  \"stay.defaultStayPeriod.checkIn\": \"2025-12-15\",\r\n  \"stay.defaultStayPeriod.checkOut\": \"2025-12-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Serch map",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"pagination\": {\r\n    \"limit\": 0,\r\n    \"offset\": 0\r\n  },\r\n  \"stay\": {\r\n    \"defaultStayPeriod\": {\r\n      \"checkIn\": \"2024-01-08\",\r\n      \"checkOut\": \"2024-01-15\"\r\n    }\r\n  },\r\n  \"geolocation\": {\r\n    \"radius\": 200,\r\n    \"centerPoint\": {\r\n      \"latitude\": 0,\r\n      \"longitude\": 0\r\n    }\r\n  },\r\n  \"guestQuantity\": {\r\n    \"adultsQuantity\": 10,\r\n    \"ageOfChildren\": [\r\n      17\r\n    ],\r\n    \"pets\": [\r\n      {\r\n        \"type\": \"DOG\",\r\n        \"weight\": \"5 kg\"\r\n      }\r\n    ]\r\n  },\r\n  \"sortBy\": \"string\",\r\n  \"filters\": [\r\n    {\r\n      \"id\": \"string\",\r\n      \"type\": \"RANGE\",\r\n      \"optionIDs\": [\r\n        \"string\"\r\n      ],\r\n      \"rangeLower\": 0,\r\n      \"rangeUpper\": 0,\r\n      \"iconName\": \"string\"\r\n    }\r\n  ],\r\n  \"flagSearch\": {\r\n    \"isSearchWithDynamicAndStaticData\": true,\r\n    \"isSearchOnlyStaticData\": true,\r\n    \"isSearchWithRoomReviewsAndFAQ\": true,\r\n    \"isSearchWithBlog\": true,\r\n    \"isSavingRawIntegrationResponse\": true\r\n  },\r\n  \"integrationsSearch\": [\r\n    {\r\n      \"integrationName\": \"FAKE_INTEGRATION\",\r\n      \"hotels\": [\r\n        {\r\n          \"hotelId\": \"string\",\r\n          \"rooms\": [\r\n            \"string\"\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search/map",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search",
+								"map"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file servise notification listen controller",
+			"item": [
+				{
+					"name": "cross-notify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_generated_email}}\",\r\n    \"password\": \"{{test_generated_password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cross-notify",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cross-notify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cross notify file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fileName\": \"string\",\r\n  \"directory\": \"string\",\r\n  \"hash\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cross-notify/file",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cross-notify",
+								"file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file storage controller",
+			"item": [
+				{
+					"name": "file json",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fileName\": \"string\",\r\n  \"directory\": \"string\",\r\n  \"hash\": \"string\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/file/json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "json {filename}",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{test_generated_email}}\",\r\n    \"password\": \"{{test_generated_password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/file/json{filename}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"json{filename}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/file/json{filename}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file",
+								"json{filename}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sorts",
+			"item": [
+				{
+					"name": "Get list of all possible search sort types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/sorts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sorts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manage Hotel Reviews",
+			"item": [
+				{
+					"name": "Get reviews by integrations and hotel id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of a possible reviews sort types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/sorts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"sorts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get global ratings for a hotel or room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/rewiews/groups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rewiews",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of all possible tag categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"let responseData = pm.response.json();\r",
+							"pm.test(\"metaData is present\", function () {\r",
+							"    let response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"metaData\");\r",
+							"});\r",
+							"if (responseData.wwtOfferId) {\r",
+							"    pm.environment.set(\"wwtOfferId\", responseData.wwtOfferId);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const PRICE_MIN = 0;\r",
+							"const PRICE_MAX = 2000;     // по твоей спеке\r",
+							"const MIN_SPREAD = 50;      // минимальный разрыв между low и up\r",
+							"\r",
+							"// Случайные цены с гарантией rangeLower < rangeUpper ≤ PRICE_MAX\r",
+							"let lower = Math.floor(Math.random() * (PRICE_MAX - MIN_SPREAD - PRICE_MIN)) + PRICE_MIN;\r",
+							"let upper = Math.floor(Math.random() * (PRICE_MAX - (lower + MIN_SPREAD) + 1)) + (lower + MIN_SPREAD);\r",
+							"upper = Math.min(upper, PRICE_MAX);\r",
+							"\r",
+							"// Случайное кол-во взрослых (1..10)\r",
+							"const adults = Math.floor(Math.random() * 10) + 1;\r",
+							"\r",
+							"// Проброс в переменные запроса\r",
+							"pm.variables.set('rangeLower', lower);\r",
+							"pm.variables.set('rangeUpper', upper);\r",
+							"pm.variables.set('adults', adults);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/offers/search?guestQuantity.adultsQuantity=3&flagSearch.isSearchWithDynamicAndStaticData=true&flagSearch.isSearchOnlyStaticData=false&flagSearch.isSearchOnlyDynamicData=false&pagination.limit=20&pagination.offset=0&geolocation.radius=5&geolocation.centerPoint.latitude=52.377956&geolocation.centerPoint.longitude=4.89707&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION&filters[0].id=1&filters[0].type=PRICE_RANGE&filters[0].rangeLower=0&filters[0].rangeUpper=1500&stay.defaultStayPeriod.checkIn=2025-09-15&stay.defaultStayPeriod.checkOut=2025-09-20",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"offers",
+						"search"
+					],
+					"query": [
+						{
+							"key": "guestQuantity.adultsQuantity",
+							"value": "3"
+						},
+						{
+							"key": "flagSearch.isSearchWithDynamicAndStaticData",
+							"value": "true"
+						},
+						{
+							"key": "flagSearch.isSearchOnlyStaticData",
+							"value": "false"
+						},
+						{
+							"key": "flagSearch.isSearchOnlyDynamicData",
+							"value": "false"
+						},
+						{
+							"key": "pagination.limit",
+							"value": "20"
+						},
+						{
+							"key": "pagination.offset",
+							"value": "0"
+						},
+						{
+							"key": "geolocation.radius",
+							"value": "5"
+						},
+						{
+							"key": "geolocation.centerPoint.latitude",
+							"value": "52.377956"
+						},
+						{
+							"key": "geolocation.centerPoint.longitude",
+							"value": "4.89707"
+						},
+						{
+							"key": "integrationsSearch[0].integrationName",
+							"value": "HOTELBEDS_INTEGRATION"
+						},
+						{
+							"key": "filters[0].id",
+							"value": "1"
+						},
+						{
+							"key": "filters[0].type",
+							"value": "PRICE_RANGE"
+						},
+						{
+							"key": "filters[0].rangeLower",
+							"value": "0"
+						},
+						{
+							"key": "filters[0].rangeUpper",
+							"value": "1500"
+						},
+						{
+							"key": "stay.defaultStayPeriod.checkIn",
+							"value": "2025-09-15"
+						},
+						{
+							"key": "stay.defaultStayPeriod.checkOut",
+							"value": "2025-09-20"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
