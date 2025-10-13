@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "53bfa91d-1e96-4444-9fc6-fdea26c8ee1a",
+		"_postman_id": "616a1798-baf6-461f-89e8-ff1aed95be65",
 		"name": "WWT API Collections Draft",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "48180077",
-		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-53bfa91d-1e96-4444-9fc6-fdea26c8ee1a?action=share&source=collection_link&creator=48180077"
+		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-616a1798-baf6-461f-89e8-ff1aed95be65?action=share&source=collection_link&creator=48180077"
 	},
 	"item": [
 		{
@@ -47,81 +47,6 @@
 									"pm.test(\"Role exists\", function () {\r",
 									"  pm.expect(response).to.have.property('role');\r",
 									"});"
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{test_generated_email}}\",\r\n    \"password\": \"{{test_generated_password}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"auth",
-								"sign-up"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sign_Up_Test_user",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
-									"//let email = `testtmail${number}@gmail.com`;\r",
-									"\r",
-									"let timestamp = Date.now();  \r",
-									"\r",
-									"//let random = Math.floor(Math.random() * 1000); \r",
-									"let email = `postman_test_${timestamp}@gmail.com`;\r",
-									"\r",
-									"pm.environment.set(\"test_generated_email\", email);\r",
-									"\r",
-									"//pm.environment.set(\"randomNumber\", number);\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"  pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"response = JSON.parse(pm.response.text());\r",
-									"pm.test(\"Role exists\", function () {\r",
-									"  pm.expect(response).to.have.property('role');\r",
-									"});\r",
-									"\r",
-									"const json = pm.response.json();\r",
-									"pm.environment.set(\"test_token\", json.token);\r",
-									"pm.environment.set(\"test_email\", json.email);"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -222,6 +147,81 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_Up_Test_user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//let number = Math.floor((Math.random() * 1000) + 1);\r",
+									"//let email = `testtmail${number}@gmail.com`;\r",
+									"\r",
+									"let timestamp = Date.now();  \r",
+									"\r",
+									"//let random = Math.floor(Math.random() * 1000); \r",
+									"let email = `postman_test_${timestamp}@gmail.com`;\r",
+									"\r",
+									"pm.environment.set(\"test_generated_email\", email);\r",
+									"\r",
+									"//pm.environment.set(\"randomNumber\", number);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"response = JSON.parse(pm.response.text());\r",
+									"pm.test(\"Role exists\", function () {\r",
+									"  pm.expect(response).to.have.property('role');\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"pm.environment.set(\"test_token\", json.token);\r",
+									"pm.environment.set(\"test_email\", json.email);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test.{{$randomUserName}}@wwt-qa.com\",\r\n    \"password\": \"{{UserPass}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2036,7 +2036,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"MALE\",\r\n  \"country\": \"UKR\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"1986-05-05\",\r\n  \"gender\": \"MALE\",\r\n  \"country\": \"UKR\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"EN\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2259,7 +2259,78 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"MALE\", //Allowed values: MALE, FEMALE, NON_BINARY, ANOTHER, DONT_ANSWER\r\n  \"country\": \"UKRaine\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USDT\" //Three-letter currency codes\r\n}",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"1985-05-05\",\r\n  \"gender\": \"MALE\", //Allowed values: MALE, FEMALE, NON_BINARY, ANOTHER, DONT_ANSWER\r\n  \"country\": \"UKRaine\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user-profile/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user-profile",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile Invalid gender",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"type\", \"title\", \"status\", \"detail\", \"instance\"],\r",
+									"    properties: {\r",
+									"        type: { type: \"string\" },\r",
+									"        title: { type: \"string\" },\r",
+									"        status: { type: \"number\" },\r",
+									"        detail: { type: \"string\" },\r",
+									"        instance: { type: \"string\" }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{test_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"dateOfBirth\": \"2025-08-08\",\r\n  \"gender\": \"man\", //Allowed values: MALE, FEMALE, NON_BINARY, ANOTHER, DONT_ANSWER\r\n  \"country\": \"UKR\", // Maximum length is 3 characters\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"language\": \"ENglish\",\r\n  \"currency\": \"USD\" //Three-letter currency codes\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4353,7 +4424,7 @@
 			]
 		},
 		{
-			"name": "Voucher",
+			"name": "Voucher +",
 			"item": [
 				{
 					"name": "Generate voucher",
@@ -4609,7 +4680,22 @@
 			"name": "Search Offers",
 			"item": [
 				{
-					"name": "Search offers",
+					"name": "Search offers 1st",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"  pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4618,7 +4704,289 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"guestQuantity.adultsQuantity\": \"2\",\r\n  \"flagSearch.isSearchWithDynamicAndStaticData\": \"true\",\r\n  \"flagSearch.isSearchOnlyStaticData\": \"false\",\r\n  \"flagSearch.isSearchOnlyDynamicData\": \"false\",\r\n  \"pagination.limit\": \"12\",\r\n  \"pagination.offset\": \"0\",\r\n  \"geolocation.radius\": \"10\",\r\n  \"geolocation.centerPoint.latitude\": \"52.377956\",\r\n  \"geolocation.centerPoint.longitude\": \"4.89707\",\r\n  \"integrationsSearch[0].integrationName\": \"HOTELBEDS_INTEGRATION\",\r\n  \"filters[0].id\": \"1\",\r\n  \"filters[0].type\": \"PRICE_RANGE\",\r\n  \"filters[0].rangeLower\": \"0\",\r\n  \"filters[0].rangeUpper\": \"1500\",\r\n  \"stay.defaultStayPeriod.checkIn\": \"2025-12-15\",\r\n  \"stay.defaultStayPeriod.checkOut\": \"2025-12-20\"\r\n}",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=2&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2"
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers 2nd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Описание ожидаемой схемы ответа",
+									"const schema = {",
+									"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+									"  \"type\": \"object\",",
+									"  \"required\": [\"content\", \"metadata\", \"responseId\"],",
+									"  \"properties\": {",
+									"    \"content\": {",
+									"      \"type\": \"object\",",
+									"      \"required\": [\"hotelStatic\", \"roomStatic\", \"hotelDynamic\", \"roomDynamic\", \"offers\"],",
+									"      \"properties\": {",
+									"        \"hotelStatic\": {",
+									"          \"type\": \"object\"",
+									"        },",
+									"        \"roomStatic\": {",
+									"          \"type\": \"object\"",
+									"        },",
+									"        \"hotelDynamic\": {",
+									"          \"type\": \"object\"",
+									"        },",
+									"        \"roomDynamic\": {",
+									"          \"type\": \"object\"",
+									"        },",
+									"        \"offers\": {",
+									"          \"type\": \"array\",",
+									"          \"items\": {",
+									"            \"type\": \"object\",",
+									"            \"required\": [",
+									"              \"nonPersistingOfferId\",",
+									"              \"integrationName\",",
+									"              \"integrationHotelId\",",
+									"              \"integrationRoomId\",",
+									"              \"status\"",
+									"            ],",
+									"            \"properties\": {",
+									"              \"nonPersistingOfferId\": { \"type\": \"string\" },",
+									"              \"integrationName\": { \"type\": \"string\" },",
+									"              \"integrationHotelId\": { \"type\": \"string\" },",
+									"              \"integrationRoomId\": { \"type\": \"string\" },",
+									"              \"status\": { \"type\": \"string\" },",
+									"              \"statusUpdateTimestamp\": { \"type\": \"string\" }",
+									"            }",
+									"          }",
+									"        }",
+									"      }",
+									"    },",
+									"    \"metadata\": {",
+									"      \"type\": \"object\",",
+									"      \"required\": [\"page\", \"sizePage\", \"totalElements\"],",
+									"      \"properties\": {",
+									"        \"page\": { \"type\": \"integer\", \"minimum\": 0 },",
+									"        \"sizePage\": { \"type\": \"integer\", \"minimum\": 1 },",
+									"        \"totalElements\": { \"type\": \"integer\", \"minimum\": 0 }",
+									"      }",
+									"    },",
+									"    \"responseId\": { \"type\": \"string\" }",
+									"  }",
+									"};",
+									"",
+									"// Проверяем, что ответ соответствует JSON Schema",
+									"pm.test(\"Response matches expected schema\", function () {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"function sleep(ms) {\r",
+									"    const start = Date.now();\r",
+									"    while (Date.now() - start < ms) {\r",
+									"        // блокируем поток — синхронная задержка\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"sleep(10000); // 10 секунд"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=2&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2"
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4635,6 +5003,828 @@
 								"v1",
 								"offers",
 								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23",
+									"disabled": true
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751",
+									"description": "required",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2",
+									"description": "required. Allowed values: 1 - 10",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Allowed values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Allowed values: CAT, DOG, OTHER",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1500",
+									"description": "Allowed values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg",
+									"disabled": true
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION",
+									"description": "required",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Guest quantity 0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=0&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12",
+									"description": "required"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751",
+									"description": "required"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "0",
+									"description": "required. Values 1 - 10"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Possible values CAT, DOG, OTHER",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1500",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg",
+									"disabled": true
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION",
+									"description": "required"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Guest quantity 11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    type: \"object\",\r",
+									"    required: [\"time\", \"statusCode\", \"errorMessage\", \"stackTrace\"],\r",
+									"    properties: {\r",
+									"        time: { type: \"string\"},\r",
+									"        statusCode: { type: \"string\" },\r",
+									"        errorMessage: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        },\r",
+									"        stackTrace: { \r",
+									"            type: \"array\",\r",
+									"            items: { type: \"string\" }\r",
+									"        }\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=11&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12",
+									"description": "required"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751",
+									"description": "required"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "11",
+									"description": "required. Values 1 - 10"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Possible values CAT, DOG, OTHER",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1500",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg",
+									"disabled": true
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION",
+									"description": "required"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Guest quantity 10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"  pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=10&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12",
+									"description": "required"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20",
+									"description": "required"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826",
+									"description": "required"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751",
+									"description": "required"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "10",
+									"description": "required. Values 1 - 10"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Possible values CAT, DOG, OTHER",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1500",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg",
+									"disabled": true
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION",
+									"description": "required"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Pets Cat 1st",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"  pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"  type: \"object\",\r",
+									"  required: [\"message\"],\r",
+									"  properties: {\r",
+									"    message: { type: \"string\" }\r",
+									"  },\r",
+									"  additionalProperties: false\r",
+									"};\r",
+									"\r",
+									"// Проверяем, что ответ соответствует схеме\r",
+									"pm.test(\"Response matches expected schema\", function () {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=2&guestQuantity.pets[0].type=CAT&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "CAT",
+									"description": "Possible values CAT, DOG, OTHER"
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1-5kg",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg",
+									"disabled": true
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Pets Dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"  pm.response.to.have.status(202);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=2&guestQuantity.pets[0].type=DOG&guestQuantity.pets[0].weight=1-5kg&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Possible values CAT, DOG, OTHER"
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "1-5kg",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg"
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search offers Pets Dog Invalid weight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/offers/search?pagination.limit=12&pagination.offset=0&stay.defaultStayPeriod.checkIn=2025-12-20&stay.defaultStayPeriod.checkOut=2025-12-23&geolocation.radius=10&geolocation.centerPoint.latitude=51.914071237880826&geolocation.centerPoint.longitude=4.479675292968751&guestQuantity.adultsQuantity=2&guestQuantity.pets[0].type=DOG&guestQuantity.pets[0].weight=50,5&flagSearch.isSearchWithDynamicAndStaticData=true&integrationsSearch[0].integrationName=HOTELBEDS_INTEGRATION",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"offers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "pagination.limit",
+									"value": "12"
+								},
+								{
+									"key": "pagination.offset",
+									"value": "0"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkIn",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "stay.defaultStayPeriod.checkOut",
+									"value": "2025-12-23"
+								},
+								{
+									"key": "geolocation.radius",
+									"value": "10"
+								},
+								{
+									"key": "geolocation.centerPoint.latitude",
+									"value": "51.914071237880826"
+								},
+								{
+									"key": "geolocation.centerPoint.longitude",
+									"value": "4.479675292968751"
+								},
+								{
+									"key": "guestQuantity.adultsQuantity",
+									"value": "2"
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[0]",
+									"value": "5",
+									"description": "Values: 0 - 17",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.ageOfChildren[1]",
+									"value": "13",
+									"description": "Second child",
+									"disabled": true
+								},
+								{
+									"key": "guestQuantity.pets[0].type",
+									"value": "DOG",
+									"description": "Possible values CAT, DOG, OTHER"
+								},
+								{
+									"key": "guestQuantity.pets[0].weight",
+									"value": "50,5",
+									"description": "Values for DOG and OTHER: <1kg, 1-5kg, 5-10kg, 10-15kg, 15-20kg, >20 kg"
+								},
+								{
+									"key": "flagSearch.isSearchWithDynamicAndStaticData",
+									"value": "true"
+								},
+								{
+									"key": "integrationsSearch[0].integrationName",
+									"value": "HOTELBEDS_INTEGRATION"
+								}
 							]
 						}
 					},
