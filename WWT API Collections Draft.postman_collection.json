@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "616a1798-baf6-461f-89e8-ff1aed95be65",
+		"_postman_id": "44f6d5b5-06f8-4191-8626-1201f2524918",
 		"name": "WWT API Collections Draft",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "48180077",
-		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-616a1798-baf6-461f-89e8-ff1aed95be65?action=share&source=collection_link&creator=48180077"
+		"_collection_link": "https://nikolay-ryzhkov-2567228.postman.co/workspace/Nick-Ryzhkov's-Workspace~ca1f9224-318b-4f9e-8d53-fd9c0773eda4/collection/48180077-44f6d5b5-06f8-4191-8626-1201f2524918?action=share&source=collection_link&creator=48180077"
 	},
 	"item": [
 		{
@@ -3713,7 +3713,10 @@
 							"name": "Validate password reset token",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -3795,17 +3798,15 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"//let number = Math.floor((Math.random() * 1000) + 1);\r",
-											"//let email = `testtmail${number}@gmail.com`;\r",
+											"const timestamp = Date.now();\r",
 											"\r",
-											"let timestamp = Date.now();  \r",
-											"\r",
-											"//let random = Math.floor(Math.random() * 1000); \r",
-											"let email = `postman_test_${timestamp}@gmail.com`;\r",
-											"\r",
+											"const email = `postman_test_${timestamp}@gmail.com`;\r",
 											"pm.environment.set(\"test_generated_email\", email);\r",
 											"\r",
-											"//pm.environment.set(\"randomNumber\", number);\r",
+											"const newPass = pm.variables.replaceIn(\"{{$randomPassword}}\");\r",
+											"pm.environment.set(\"test_generated_password\", newPass);\r",
+											"\r",
+											"\r",
 											""
 										],
 										"type": "text/javascript",
@@ -3841,7 +3842,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"rytofusi@denipl.net\",\r\n  \"password\": \"123456\"\r\n}",
+									"raw": "{\r\n  \"email\": \"{{test_generated_email}}\",\r\n  \"password\": \"{{test_generated_password}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3864,75 +3865,6 @@
 							"response": []
 						},
 						{
-							"name": "Sign_In_Successful Copy",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"requests": {}
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"let response = pm.response.json();\r",
-											"if (response.token) {\r",
-											"    pm.environment.set(\"authToken\", response.token);\r",
-											"}"
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"requests": {}
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{authToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"rytofusi@denipl.net\",\r\n  \"password\": \"123456\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/auth/sign-in",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"sign-in"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Get user email Copy",
 							"event": [
 								{
@@ -3949,21 +3881,24 @@
 											"  properties: {\r",
 											"    email: { type: \"string\" }\r",
 											"  },\r",
-											"  additionalProperties: false \r",
+											"  additionalProperties: false\r",
 											"};\r",
-											"\r",
-											"pm.test(\"Response is JSON\", function () {\r",
-											"  pm.response.to.be.json;\r",
-											"});\r",
 											"\r",
 											"pm.test(\"Response matches expected schema\", function () {\r",
 											"  pm.response.to.have.jsonSchema(schema);\r",
 											"});\r",
 											"\r",
 											"const jsonData = pm.response.json();\r",
+											"\r",
 											"pm.test(\"Response contains 'email' field\", function () {\r",
 											"  pm.expect(jsonData).to.have.property(\"email\");\r",
-											"});"
+											"});\r",
+											"\r",
+											"pm.test(\"Email in response matches environment variable test_generated_email\", function () {\r",
+											"  const expectedEmail = pm.environment.get(\"test_generated_email\");\r",
+											"  pm.expect(jsonData.email).to.eql(expectedEmail);\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {},
@@ -4032,8 +3967,8 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"  pm.response.to.have.status(200);\r",
+											"pm.test(\"Status code is 204\", function () {\r",
+											"  pm.response.to.have.status(204);\r",
 											"});"
 										],
 										"type": "text/javascript",
@@ -4074,6 +4009,75 @@
 										"v1",
 										"clients",
 										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sign_In_Successful Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"let response = pm.response.json();\r",
+											"if (response.token) {\r",
+											"    pm.environment.set(\"authToken\", response.token);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"{{test_generated_email}}\",\r\n  \"password\": \"{{test_generated_new_password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/sign-in",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"sign-in"
 									]
 								}
 							},
